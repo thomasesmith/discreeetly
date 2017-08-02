@@ -15,6 +15,7 @@
 		<meta name="twitter:url" content="http://www.discreeetly.com">
 		<meta name="twitter:title" content="discreeetly">
 		<meta name="twitter:description" content="Send out anonymous tweets with discreeetly. Perfect for government leaks, or telling someone they're cute.">
+		<link rel="icon" href="/favicon.ico">
 		<link rel="stylesheet" href="/static/css/bootstrap-flatly.min.css">
 		<link rel="stylesheet" href="/static/css/styles.css">
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

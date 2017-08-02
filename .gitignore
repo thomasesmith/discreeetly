@@ -1,4 +1,4 @@
 .DS_Store
-/src/vendor
+/html/vendor
 /cert/
 sftp-config.json
