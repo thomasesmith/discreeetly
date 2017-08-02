@@ -1,0 +1,2 @@
+# Discreeetly
+Perfect for when you don't want to create a burner Twitter account to detach yourself from a high-profile government leak, or for when you just want to tell someone that you think they're cute.

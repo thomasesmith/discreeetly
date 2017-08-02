@@ -1,0 +1,19 @@
+{
+	"app_settings": {
+		"max_queueable_tweets": 5,
+		"moderators_twitter_user_id": "0000000",
+		"crypt_salt": "User's IPs get hashed with this salt before stored"
+	},
+	"database_credentials": {
+		"hostname": "localhost",
+		"database_name": "discreeetly",
+		"user_name": "discreeetly_user",
+		"password": "SuperSecretP@ssword"
+	},
+	"twitter_api_credentials": {
+		"oauth_access_token": "",
+		"oauth_access_token_secret": "",
+		"consumer_key": "",
+		"consumer_secret": ""
+	}
+}

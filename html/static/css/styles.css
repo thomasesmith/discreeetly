@@ -1,0 +1,19 @@
+.jumbotron {
+	margin-top: 40px;
+}
+
+.jumbotron h1 {
+	margin-top: 0;
+}
+.jumbotron form {
+	margin-top: 30px;
+}
+
+.jumbotron label.error-label {
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+div.header h3 a {
+	color: #b4bcc2;
+}
