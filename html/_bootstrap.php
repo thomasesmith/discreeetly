@@ -1,8 +1,8 @@
 <?php 
 
 // App settings, database credentials, and Twitter API keys are stored in a json file.
-// It's important that this file is anywhere but in the web root. 
-$config = json_decode(file_get_contents(__DIR__ . '/../discreeetly.config.json'), true);
+// It's important that this file is not in the web root. 
+$config = json_decode(file_get_contents(__DIR__ . '/../config.json'), true);
 
 define("MAX_QUEUEABLE_TWEETS", $config['app_settings']['max_queueable_tweets']);
 define("MODERATORS_TWITTER_USER_ID", $config['app_settings']['moderators_twitter_user_id']);
@@ -14,6 +14,7 @@ define("TW_CONSUMER_KEY", $config['twitter_api_credentials']['consumer_key']);
 define("TW_CONSUMER_SECRET", $config['twitter_api_credentials']['consumer_secret']);
 
 // Always force requests to load via https 
+// Comment this out when not in running with ssl
 if (!isset($_SERVER['HTTPS'])) {
    header('Location: https://' . $_SERVER["SERVER_NAME"] . $_SERVER['REQUEST_URI']);
 }
