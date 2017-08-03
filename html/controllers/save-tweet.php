@@ -6,7 +6,7 @@ if (isset($_POST['content'])) {
 	$content = $_POST['content'];
 
 	try {
-		$tweet = new Tweet($dbh, '', '', $content);
+		$tweet = new Tweet($dbh, null, null, $content);
 	} catch (Exception $e) {
 		header('Location: /?e=' . urlencode($e->getMessage()) . '&c=' . urlencode($content));
 		exit;

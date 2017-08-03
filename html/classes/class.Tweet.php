@@ -214,4 +214,19 @@ class Tweet {
 		}
 	}
 
+
+	public function fetchTweetDetailsFromTwitter() {
+		if (strlen($this->twitter_tweet_id) > 0) {
+			$url = 'https://api.twitter.com/1.1/statuses/show.json';
+			$getfield = '?id=' . $this->twitter_tweet_id;
+			$requestMethod = 'GET';
+
+			$twitter = new TwitterAPIExchange($this->twitter_api_settings);
+			$tweet_json = $twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest();
+
+			return json_decode($tweet_json, true);
+
+		}
+	}
+
 }
