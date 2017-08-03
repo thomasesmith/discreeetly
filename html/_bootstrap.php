@@ -1,7 +1,9 @@
 <?php 
-ini_set('session.cookie_httponly', 1);
-ini_set('session.use_only_cookies', 1);
-ini_set('session.cookie_secure', 1);
+// These php.ini settings should be set accordingly, if you don't have access to the php.ini
+// try just commenting these lines out.
+//ini_set('session.cookie_httponly', 1);
+//ini_set('session.use_only_cookies', 1);
+//ini_set('session.cookie_secure', 1);
 
 // App settings, database credentials, and Twitter API keys are stored in a json file.
 // It's important that this file is not in the web root. 
@@ -19,7 +21,7 @@ define("TW_CONSUMER_SECRET", $config['twitter_api_credentials']['consumer_secret
 // Always force requests to load via https 
 // Comment this out when not in running with ssl
 if (!isset($_SERVER['HTTPS'])) {
-  header('Location: https://' . $_SERVER["SERVER_NAME"] . $_SERVER['REQUEST_URI']);
+	//header('Location: https://' . $_SERVER["SERVER_NAME"] . $_SERVER['REQUEST_URI']);
 }
 
 session_start();
