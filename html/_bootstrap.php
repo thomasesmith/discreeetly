@@ -9,7 +9,11 @@
 // It's important that this file is not in the web root. 
 $config = json_decode(file_get_contents(__DIR__ . '/../config.json'), true);
 
+define("APP_NAME", $config['app_settings']['app_name']);
+define("APP_URL", $config['app_settings']['app_url']);
+define("TWITTER_SCREEN_NAME", $config['app_settings']['twitter_screen_name']);
 define("MAX_QUEUEABLE_TWEETS", $config['app_settings']['max_queueable_tweets']);
+define("SERVING_WITH_SSL_CERT", $config['app_settings']['serving_with_ssl_cert']);
 define("MODERATORS_TWITTER_USER_ID", $config['app_settings']['moderators_twitter_user_id']);
 define("CRYPT_SALT", $config['app_settings']['crypt_salt']);
 
@@ -18,10 +22,8 @@ define("TW_OAUTH_ACCESS_TOKEN_SECRET", $config['twitter_api_credentials']['oauth
 define("TW_CONSUMER_KEY", $config['twitter_api_credentials']['consumer_key']);
 define("TW_CONSUMER_SECRET", $config['twitter_api_credentials']['consumer_secret']);
 
-// Always force requests to load via https 
-// Comment this out when not in running with ssl
-if (!isset($_SERVER['HTTPS'])) {
-	//header('Location: https://' . $_SERVER["SERVER_NAME"] . $_SERVER['REQUEST_URI']);
+if (SERVING_WITH_SSL_CERT == 1 && !isset($_SERVER['HTTPS'])) {
+	header('Location: https://' . $_SERVER["SERVER_NAME"] . $_SERVER['REQUEST_URI']);
 }
 
 session_start();

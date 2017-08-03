@@ -3,7 +3,7 @@
 			<div class="alert alert-success">Be on the lookout! Your tweet has been queued and will go out pretty soon.</div>
 		<?php } ?>
 		<h1 class="text-center">Tweet anonymously</h1>
-		<p class="text-center">Send anonymous text tweets through the <a href="https://twitter.com/discreeetly">@discreeetly</a> Twitter account. <span class="hidden-xs">Perfect for when you don't want to create a burner account to detach yourself from a high-profile government leak, or for when you just want to tell someone that you think they're cute.</span></p>
+		<p class="text-center">Send anonymous text tweets through the <a href="https://twitter.com/<?=TWITTER_SCREEN_NAME?>">@<?=TWITTER_SCREEN_NAME?></a> Twitter account. <span class="hidden-xs">Perfect for when you don't want to create a burner account to detach yourself from a high-profile government leak, or for when you just want to tell someone that you think they're cute.</span></p>
 		<form class="form-horizontal" method="post" action="/controllers/save-tweet.php">
 			<fieldset>
 				<div class="form-group <?php if (isset($_GET['e'])) { echo 'has-error'; } ?>">
@@ -21,4 +21,4 @@
 			</fieldset>
 		</form>
 	</div>
-	<p class="text-center">DMs are open. Slide in to 'em if you have questions:  <a href="http://www.twitter.com/discreeetly">@discreeetly</a>.</p>
+	<p class="text-center">Questions? Slide in to our DMs:  <a href="http://www.twitter.com/<?=TWITTER_SCREEN_NAME?>">@<?=TWITTER_SCREEN_NAME?></a>.</p>
