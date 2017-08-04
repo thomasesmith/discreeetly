@@ -4,6 +4,12 @@
 
 require_once(__DIR__ . '/../html/_bootstrap.php');
 
-// Go fetch and process any new incoming approval DMs 
-$DM = new DMs($dbh);
-$DM->processNextDMs();
+
+// Are there submissinos awaiting approval?
+if (Tweets::getNumberOfTweetsAwaitingModeration($dbh) > 0) {
+
+	// If so, go fetch and process any new incoming approval DMs 
+	$DM = new DMs($dbh);
+	$DM->processNextDMs();
+
+}

@@ -8,8 +8,10 @@ All of the submissions are moderated before they're actually tweeted out by the 
 ## Setting it Up
 #### Composer 
 Run that `composer install` in the __/html__ folder. A popular Twitter API wrapper package is required.
+#### Creating The Twitter App 
+Create a new app with your Twitter account at [apps.twitter.com](https://apps.twitter.com), and when creating an access tokens make sure to include the option of allowing it to read/write direct messages. Copy the two app consumers keys and the two access token to the __config.json__
 #### config.json
-Go set all of these values. 
+Go set the rest of these values. 
 #### Database
 Run the __schema.sql__ file in your MySQL/MariaDB environment. In order to support emojis, you need to make sure your database supports utf8mb4 character encoding. If yours doesn't, the __schema.sql__ will generate errors when you run it. 
 #### cronjobs
@@ -19,9 +21,8 @@ If you are running this with an SSL certificate (and you should), make sure you 
 - `session.cookie_http=1`
 - `session.use_only_cookies=1`
 - `session.cookie_secure=1`
-#### Creating The Twitter App 
-Create a new app with your Twitter account at [apps.twitter.com](https://apps.twitter.com), and when creating an access tokens make sure to include the option of allowing it to read/write direct messages. Copy the two app consumers keys and the two access token to the __config.json__
  
 ## Feature Ideas for The Future
 - Use sessions to allow the anonymous user to stay apprised to faves and replies of the tweets they've submitted, and allow them to send out reply tweets in that tweet thread. 
+- Allowing the submission to be a __reply__ tweet, to an existing tweet.
 - Allowing user to schedule their tweets.

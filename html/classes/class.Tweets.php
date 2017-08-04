@@ -61,6 +61,23 @@ class Tweets {
 	}
 
 
+	public static function getNumberOfTweetsAwaitingModeration($dbh) {
+		self::$dbh = $dbh;
+		$count = 0;
+		$stmt = self::$dbh->query(	'SELECT count(id) as cnt 
+									FROM tweets 
+									WHERE submitted_to_twitter = 0 
+										AND approved = 0
+										AND deleted != 1');
+
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$count = intval($row['cnt']);
+		}
+
+		return $count;
+	}
+
+
 	public static function getNumberOfTweetsQueuedByIp($dbh) {
 		self::$dbh = $dbh;
 		$count = 0;
