@@ -120,8 +120,8 @@ class Tweet {
 
 
 	private function setContent($content) {
-		if (mb_strlen($content) > 120 || mb_strlen($content) < 1) {
-			throw new Exception('Tweets need to be at least one character, and no more than 120 characters');
+		if (mb_strlen($content) > 260 || mb_strlen($content) < 1) {
+			throw new Exception('Tweets need to be at least one character, and no more than 260 characters');
 		} elseif (Tweets::getNumberOfTweetsQueuedByIp($this->dbh) >= MAX_QUEUEABLE_TWEETS) {
 			throw new Exception('Whoa hold up. Wait a few minutes while we get a chance to send out the tweets you\'ve already queued. Then try again in a few minutes');
 		} else {
