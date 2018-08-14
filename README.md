@@ -28,4 +28,4 @@ If you are running this with an SSL certificate (and you should), make sure you 
 - Allowing user to schedule their tweets.
  
 ## I Have Questions!
-Send me a tweet [@itsmetomsmith](https://www.twitter.com/itsmetomsmith), or email me tom AT itsmetomsmith DOT com 
+Send me a tweet [@varwwwhtml](https://www.twitter.com/varwwwhtml), or email me tom AT itsmetomsmith DOT com 
