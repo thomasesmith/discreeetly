@@ -1,6 +1,7 @@
 <?php 
 
-class DMs {
+class DMs
+{
 	private $dbh;
 	private $twitter_api_settings = array(
 	    'oauth_access_token' => TW_OAUTH_ACCESS_TOKEN,
@@ -10,21 +11,23 @@ class DMs {
 	);	
 
 
-	function __construct($dbh) {
+	function __construct($dbh)
+	{
 		$this->dbh = $dbh; 
 	}
 
 
-	public function processNextDMs() {
+	public function processNextDMs()
+	{
 		$dms = $this->fetchNextUnprocessedDMs();
 
 		if (count($dms) > 0) {
 			foreach ($dms as $dm) {
 
-				if ($dm["sender"]["id"] == MODERATORS_TWITTER_USER_ID) {
-					// Obviously, the app should only listen to DMs from the moderator's account
+				if ($dm["message_create"]["sender_id"] == MODERATORS_TWITTER_USER_ID) {
+					// Te app should only listen to DMs from the moderator's account
 					
-					list($answer, $tweet_id) = explode(' ', strtolower(trim($dm["text"])));
+					list($answer, $tweet_id) = explode(' ', strtolower(trim($dm["message_create"]["message_data"]["text"])));
 
 					if ($answer == "yes") {
 						$tweet = new Tweet($this->dbh, '', intval($tweet_id), '');
@@ -35,7 +38,7 @@ class DMs {
 					}
 				}
 
-				// Over-write the last direct message ID with this DMs ID so it doesn't read it again.
+				// Over-write the last direct message ID with this DMs ID so it doesn't act on it again.
 				if (strlen($dm["id"]) > 0) {
 					try {
 					  	$stmt = $this->dbh->prepare('UPDATE last_direct_message 
@@ -52,7 +55,8 @@ class DMs {
 	}
 
 
-	private function fetchIdOfLastDMProcessed() {
+	private function fetchIdOfLastDMProcessed()
+	{
 		$stmt = $this->dbh->query(	'SELECT direct_message_id 
 									FROM last_direct_message 
 									WHERE id = 1 
@@ -68,18 +72,34 @@ class DMs {
 	}
 
 
-	private function fetchNextUnprocessedDMs() {
+	private function fetchNextUnprocessedDMs()
+	{
 		// Got fetch the unprocessed DMs, return them as an assoc. array
+		$url = 'https://api.twitter.com/1.1/direct_messages/events/list.json';
+		$getfield = '?count=50';
 
-		$url = 'https://api.twitter.com/1.1/direct_messages.json';
-		$getfield = '?since_id=' . $this->fetchIdOfLastDMProcessed();
 		$requestMethod = 'GET';
 
 		$twitter = new TwitterAPIExchange($this->twitter_api_settings);
 		$dms_json = $twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest();
 
-		$dms = json_decode($dms_json, true);
+		$dms = json_decode($dms_json, true); // Twitter discontinued the since_id get field, so this will get all of the last 50 messages
 
-		return $dms;
+		$newDMs = array(); 
+
+		if (count($dms['events']) > 0)
+		{
+			$events = array_reverse($dms['events']); // a reverse is needed to sort these in order they were received
+
+			foreach ($events as $event)
+			{
+				if (intval($event['id']) > $this->fetchIdOfLastDMProcessed()) 
+				{
+					$newDMs[] = $event;
+				}
+			}
+		}
+
+		return $newDMs;
 	}
 }

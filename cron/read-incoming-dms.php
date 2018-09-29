@@ -4,8 +4,7 @@
 
 require_once(__DIR__ . '/../html/_bootstrap.php');
 
-
-// Are there submissinos awaiting approval?
+// Are there submissions awaiting approval?
 if (Tweets::getNumberOfTweetsAwaitingModeration($dbh) > 0) {
 
 	// If so, go fetch and process any new incoming approval DMs 

@@ -1,4 +1,5 @@
 .DS_Store
+/.vscode
 /html/vendor
 /cert/
 sftp-config.json

@@ -13,6 +13,7 @@ CREATE TABLE `tweets` (
   `added` datetime DEFAULT CURRENT_TIMESTAMP,
   `user_id` int(10) unsigned DEFAULT '0',
   `content` varchar(260) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `in_reply_to_tweet_id` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
   `ip_hash` varchar(64) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `session_id` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
   `approved` tinyint(1) unsigned DEFAULT '0',
