@@ -5,16 +5,16 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="Send out anonymous tweets with <?=APP_NAME?>. Perfect for government leaks, or bitching about your boss.">
+		<meta name="description" content="Send out anonymous tweets with <?=APP_NAME?>. Perfect for government leaks, or complaining about your boss.">
 		<title>Tweet anonymously, with <?=APP_NAME?></title>
 		<meta property="og:url" content="http<?=(SERVING_WITH_SSL_CERT == 1 ? 's' : '')?>://<?=APP_URL?>">
-		<meta property="og:description" content="Send out anonymous tweets with <?=APP_NAME?>. Perfect for government leaks, or bitching about your boss.">
+		<meta property="og:description" content="Send out anonymous tweets with <?=APP_NAME?>. Perfect for government leaks, or complaining about your boss.">
 		<meta property="og:title" content="<?=APP_NAME?>">
 		<meta property="og:site_name" content="<?=APP_NAME?>">
 		<meta name="twitter:card" content="summary">
 		<meta name="twitter:url" content="http<?=(SERVING_WITH_SSL_CERT == 1 ? 's' : '')?>://<?=APP_URL?>">
 		<meta name="twitter:title" content="<?=APP_NAME?>">
-		<meta name="twitter:description" content="Send out anonymous tweets with <?=APP_NAME?>. Perfect for government leaks, or bitching about your boss.">
+		<meta name="twitter:description" content="Send out anonymous tweets with <?=APP_NAME?>. Perfect for government leaks, or complaining about your boss.">
 		<link rel="icon" href="/favicon.ico">
 		<link rel="stylesheet" href="/static/css/bootstrap-flatly.min.css">
 		<link rel="stylesheet" href="/static/css/styles.css">
