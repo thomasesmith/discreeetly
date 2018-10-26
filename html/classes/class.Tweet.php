@@ -243,7 +243,21 @@ class Tweet
 					'message_create' => 
 					array(
 						'target' => array('recipient_id' => MODERATORS_TWITTER_USER_ID),
-						'message_data' => array('text' => $dm_content)
+						'message_data' => array('text' => $dm_content, 
+												'quick_reply' => array(
+														'type' => 'options',
+														'options' => array(
+															array(
+																'label' => 'Yes ' . $this->id,
+																'description' => 'Approve'
+															),
+															array(
+																'label' => 'Del ' . $this->id,
+																'description' => 'Reject'
+															)
+														)
+													)
+												)
 					)
 				)
 			);
