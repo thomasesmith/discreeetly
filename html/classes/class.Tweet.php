@@ -165,7 +165,7 @@ class Tweet
 	{
 		try {
 			if (strlen($this->uid) > 0) {
-	    		$stmt = $this->dbh->prepare('SELECT id, uid, added, content, twitter_tweet_id,
+	    		$stmt = $this->dbh->prepare('SELECT id, uid, added, content, twitter_tweet_id, ip_hash,
 	    											submitted_to_twitter, approved, deleted,
 	    											twitter_error_text, in_reply_to_tweet_id
 	    									FROM tweets 
@@ -173,7 +173,7 @@ class Tweet
 	    									LIMIT 1');
 				$stmt->execute(array($this->uid));
 			} else if ($this->id > 0) {
-	    		$stmt = $this->dbh->prepare('SELECT id, uid, added, content, twitter_tweet_id,
+	    		$stmt = $this->dbh->prepare('SELECT id, uid, added, content, twitter_tweet_id, ip_hash,
 	    											submitted_to_twitter, approved, deleted,
 	    											twitter_error_text, in_reply_to_tweet_id
 	    									FROM tweets 
@@ -189,6 +189,7 @@ class Tweet
     			$this->uid = $row['uid'];
     			$this->added = $row['added'];
     			$this->content = $row['content'];
+    			$this->ip_hash = $row['ip_hash'];
     			$this->in_reply_to_tweet_id = $row['in_reply_to_tweet_id'];
     			$this->submitted_to_twitter = $row['submitted_to_twitter'];
     			$this->approved = $row['approved'];
@@ -206,7 +207,9 @@ class Tweet
 	{
 		try {
 			$uid = uniqid(true);
+
 			$ip_hash = crypt($_SERVER['REMOTE_ADDR'], CRYPT_SALT);
+			$this->ip_hash = $ip_hash; 
 
     		$stmt = $this->dbh->prepare('INSERT INTO tweets 
     									(uid, content, ip_hash, session_id, in_reply_to_tweet_id) 
@@ -234,7 +237,7 @@ class Tweet
 
 		if ($this->submitted_to_twitter == 0 && $this->approved == 0) { 
 
-			$dm_content = "\"" . $this->content . "\"\r\n\r\nReply \"yes " . $this->id . "\" to approve, or \"del " . $this->id. "\" to delete";
+			$dm_content = "\"" . $this->content . "\"\r\n\r\n by \"" . $this->ip_hash . "\"\r\n\r\nReply \"yes " . $this->id . "\" to approve, or \"del " . $this->id. "\" to delete";
 
 			$postfields = array (
 				'event' => 
